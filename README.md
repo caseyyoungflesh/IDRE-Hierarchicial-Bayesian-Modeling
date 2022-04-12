@@ -11,7 +11,7 @@ May 6, 9am - 4pm (Pacific)
 
 ### Where
 
-Virtual (register [here](https://ucla.zoom.us/meeting/register/tJEsduqhqjktG9R4_YV0gj_IjFpK3Ae5H9Wm))
+Virtual (register with UCLA Institute for Digital Research & Education [here](https://ucla.zoom.us/meeting/register/tJEsduqhqjktG9R4_YV0gj_IjFpK3Ae5H9Wm))
 
 
 ### Schedule
@@ -22,7 +22,7 @@ Virtual (register [here](https://ucla.zoom.us/meeting/register/tJEsduqhqjktG9R4_
 
 12:00 PM – 01: 00 PM - Lunch Break
 
-01:00 PM – 04:00 PM - Hierarchical Bayesian modeling for spatial data science (Instructor: [Banerjee](http://sudipto.bol.ucla.edu/)
+01:00 PM – 04:00 PM - Hierarchical Bayesian modeling for spatial data science (Instructor: [Banerjee](http://sudipto.bol.ucla.edu/))
 
 
 ### Before the workshop begins
