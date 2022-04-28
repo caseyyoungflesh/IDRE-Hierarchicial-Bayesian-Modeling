@@ -41,8 +41,11 @@ Parts of this workshop will be interactive. That is, you will fit Bayesian model
 Code for morning session can be found at `Scripts_morning_session/`:
 
 * `1-pdf.R` - plot normal pdf
-* `2-global.R` - grid approximation - globe model
+* `2-globe.R` - grid approximation - globe model
 * `3-bird-simuation.R` - simulate bird data for linear regression
 * `4-fit-linear-bird-model.R` - simulate data then fit/assess linear regression
-* `linear-bird-model.stan` - Stan file (bird weight ~ bird food)
+* `4-linear-bird-model.stan` - Stan file (bird weight ~ bird food)
+* `5-var-int-simulation.R` -simulate data for varying intercepts regression
+* `6-fit-var-int-bird-model.R` - simulate data then fit/assess varying intercepts linear regression
+* `6-fit-var-int-bird-model.stan` - Stan file for varying intercepts model
 

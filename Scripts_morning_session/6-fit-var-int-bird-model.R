@@ -1,5 +1,5 @@
 #################################################
-# simulate data for varying intercepts regression
+# simulate data then fit/assess varying intercepts linear regression
 #################################################
 
 # simulate data for multiple groups ------------------------------------------------
