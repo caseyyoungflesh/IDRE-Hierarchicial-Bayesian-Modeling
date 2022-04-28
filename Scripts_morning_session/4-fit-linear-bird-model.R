@@ -39,7 +39,7 @@ DATA <- list(N = N,
 
 # run Stan model ----------------------------------------------------------
 
-fit <- rstan::stan(file = '~/Google_Drive/Teaching/UCLA_Bayes_Stan_2022/Scripts_morning_session/linear-bird-model.stan',
+fit <- rstan::stan(file = '~/Google_Drive/Teaching/UCLA_Bayes_Stan_2022/Scripts_morning_session/4-linear-bird-model.stan',
                   data = DATA,
                   chains = 4,
                   iter = 2000,
