@@ -31,7 +31,18 @@ Parts of this workshop will be interactive. That is, you will fit Bayesian model
 
 * [RStudio](https://www.rstudio.com/)
 * [R](https://www.r-project.org/)
-* The `rstan` and `MCMCvis` packages
+* The `rstan`, `tidyverse`, and `MCMCvis` packages
   * Detailed instructions for installing the `rstan` package can be found [here](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started)
   * The [Stan forums](https://discourse.mc-stan.org) are a useful resource to help troubleshoot package installation issues
-  
+
+
+### Resources
+
+Code for morning session can be found at `Scripts_morning_session/`:
+
+* `1-pdf.R` - plot normal pdf
+* `2-global.R` - grid approximation - globe model
+* `3-bird-simuation.R` - simulate bird data for linear regression
+* `4-fit-linear-bird-model.R` - simulate data then fit/assess linear regression
+* `linear-bird-model.stan` - Stan file (bird weight ~ bird food)
+

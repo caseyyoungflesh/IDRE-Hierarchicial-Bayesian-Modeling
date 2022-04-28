@@ -1,5 +1,5 @@
 #################################################
-# Simluate data then fit/assess linear regression
+# Simulate data then fit/assess linear regression
 #################################################
 
 # simulate data -----------------------------------------------------------
@@ -26,8 +26,8 @@ bird_weight <- rnorm(N, mu, sigma)
 # load packages -----------------------------------------------------------
 
 library(rstan)
+#library(shinystan)
 library(MCMCvis)
-library(shinystan)
 
 
 # organize data ------------------------------------------------------------
@@ -39,22 +39,45 @@ DATA <- list(N = N,
 
 # run Stan model ----------------------------------------------------------
 
-fit <- rstan::stan(file = '~/Google_Drive/Teaching/UCLA_Bayes_Stan_2022/Scripts/linear-bird-model.stan',
+fit <- rstan::stan(file = '~/Google_Drive/Teaching/UCLA_Bayes_Stan_2022/Scripts_morning_session/linear-bird-model.stan',
                   data = DATA,
                   chains = 4,
                   iter = 2000,
                   warmup = 1000,
                   pars = c('alpha',
                            'beta',
-                           'mu',
                            'sigma',
+                           'mu',
                            'yrep'))
 
 
 # look at the output ------------------------------------------------------
 
-#shinystan
-shinystan::launch_shinystan(fit)
+#shinystan - might skip due to time
+# shinystan::launch_shinystan(fit)
+
+#posterior chains and densities
+MCMCvis::MCMCtrace(fit, 
+                   params = c('alpha', 'beta', 'sigma'),
+                   pdf = FALSE,
+                   Rhat = TRUE,
+                   n.eff = TRUE)
+
+
+# posterior predictive check ----------------------------------------------
+
+#extract posterior for yrep (data simulated from posterior)
+yrep_ch <- MCMCvis::MCMCchains(fit, params = 'yrep')
+
+#make sure that data generated from posterior samples looks similar to observed data
+plot(density(bird_weight), lwd = 2, 
+     ylim = c(0, 0.18),
+     xlab = 'y',
+     main = 'Posterior predictive check')
+for (i in 1:150)
+{
+  lines(density(yrep_ch[i,]), col = rgb(1,0,0,0.1))
+}
 
 
 # summarize model ---------------------------------------------------------
@@ -75,23 +98,7 @@ mean(alpha_ch)
 quantile(alpha_ch, probs = c(0.025, 0.5, 0.975))
 
 
-# posterior predictive check ----------------------------------------------
-
-#extract posterior for yrep (data simulated from posterior)
-yrep_ch <- MCMCvis::MCMCchains(fit, params = 'yrep')
-
-#make sure that data generated from posterior samples looks similar to observed data
-plot(density(bird_weight), lwd = 2, 
-     ylim = c(0, 0.18),
-     xlab = 'y',
-     main = 'Posterior predictive check')
-for (i in 1:150)
-{
-  lines(density(yrep_ch[i,]), col = rgb(1,0,0,0.1))
-}
-
-
-# check prior overlap with posterior ----------------------------------------
+# check prior posterior overlap ----------------------------------------
 
 #check to make sure prior is not having an outsized effect on posterior
 MCMCvis::MCMCtrace(fit, 
@@ -124,9 +131,6 @@ MCMCvis::MCMCtrace(fit,
 
 
 # plot model fit ----------------------------------------------------------
-
-#extract posterior chain for mu
-mu_ch <- MCMCvis::MCMCchains(fit, params = 'mu')
 
 #calculate quantiles of mu
 mu_q <- MCMCvis::MCMCpstr(fit, params = 'mu', 
