@@ -42,7 +42,7 @@ Code for morning session can be found at [`Scripts_morning_session/`](Scripts_mo
 
 * [`1-pdf.R`](Scripts_morning_session/1-pdf.R) - plot normal pdf
 * [`2-globe.R`](Scripts_morning_session/2-globe.R) - grid approximation - globe model
-* [`3-bird-simuation.R`](Scripts_morning_session/3-bird-simuation.R) - simulate bird data for linear regression
+* [`3-bird-simulation.R`](Scripts_morning_session/3-bird-simulation.R) - simulate bird data for linear regression
 * [`4-fit-linear-bird-model.R`](Scripts_morning_session/4-fit-linear-bird-model.R) - simulate data then fit/assess linear regression
 * [`4-linear-bird-model.stan`](Scripts_morning_session/4-linear-bird-model.stan) - Stan file (bird weight ~ bird food)
 * [`5-var-int-simulation.R`](Scripts_morning_session/5-var-int-simulation.R) -simulate data for varying intercepts regression
