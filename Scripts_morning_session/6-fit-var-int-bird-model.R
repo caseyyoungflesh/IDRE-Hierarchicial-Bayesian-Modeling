@@ -9,13 +9,15 @@
 #set seed for reproducing results
 set.seed(3)
 #number of data points per group
-N <- 30
+PGN <- 30
 #number of groups
 J <- 5
+#number of data points
+N <- PGN * J
 #group ids
 gid <- rep(1:J, each = 30)
 #simulate predictors (standardized)
-food_std <- rnorm(N*J, 0, 1)
+food_std <- rnorm(N, 0, 1)
 #generating intercept and slope values
 mu_alpha <- 40
 sigma_alpha <- 6
@@ -23,19 +25,21 @@ beta <- 3
 #simulate different alpha params
 alpha <- rnorm(J, mu_alpha, sigma_alpha)
 #simulate linear predictor
-mu <- rep(NA, length = N*J)
+mu <- rep(NA, length = N)
 counter <- 1
 for (i in 1:J)
 {
   #i <- 1
-  idx <- counter:(counter+N-1)
+  idx <- counter:(counter + PGN - 1)
   mu[idx] <- alpha[i] + beta * food_std[idx]
-  counter <- counter + N
+  counter <- counter + PGN
 }
 #process error (wrt relationship between food and bird weight)
 sigma <- 3
 #simulate y values
-bird_weight <- rnorm(N*J, mu, sigma)
+bird_weight <- rnorm(N, mu, sigma)
+
+df <- data.frame(bird_weight, food_std, gid)
 
 
 # load packages -----------------------------------------------------------
@@ -50,7 +54,6 @@ library(tidyverse)
 
 DATA <- list(N = N,
              J = J,
-             NJ = N*J,
              y = bird_weight,
              x = food_std,
              gid = gid)
@@ -93,7 +96,7 @@ yrep_ch <- MCMCvis::MCMCchains(fit, params = 'yrep')
 
 #make sure that data generated from posterior samples looks similar to observed data
 plot(density(bird_weight), lwd = 2, 
-     ylim = c(0, 0.18),
+     ylim = c(0, 0.07),
      xlab = 'y',
      main = 'Posterior predictive check')
 for (i in 1:150)

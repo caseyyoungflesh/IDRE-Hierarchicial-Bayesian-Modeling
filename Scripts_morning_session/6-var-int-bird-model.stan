@@ -1,12 +1,11 @@
 // bird weight ~ bird food abundance - varying intercepts
 
 data {
-  int<lower=0> N; // number of observations per group
+  int<lower=0> N; // number of observations
   int<lower=0> J; // number of groups
-  int<lower=0> NJ; // number of groups * number of obs
-  vector[NJ] y; // bird weight
-  vector[NJ] x; // bird food abundance (standardized)
-  int gid[NJ]; // group ids
+  vector[N] y; // bird weight
+  vector[N] x; // bird food abundance (standardized)
+  int gid[N]; // group ids
 }
 
 parameters {
@@ -18,7 +17,7 @@ parameters {
 }
 
 transformed parameters {
-  vector[NJ] mu; // linear predictor
+  vector[N] mu; // linear predictor
     
     mu = alpha[gid] + beta * x;
 }
@@ -30,14 +29,13 @@ model {
   beta ~ normal(0, 10);
   sigma ~ normal(0, 10); // half-normal
   
-  alpha ~ normal(mu_alpha, sigma_alpha);
-  
   // likelihood
+  alpha ~ normal(mu_alpha, sigma_alpha);
   y ~ normal(mu, sigma);
 }
 
 generated quantities {
-  real yrep[NJ]; // simulated repsonse generated from posterior samples
+  real yrep[N]; // simulated repsonse generated from posterior samples
   
   yrep = normal_rng(mu, sigma);
 }
