@@ -38,7 +38,7 @@ Parts of this workshop will be interactive. That is, you will fit Bayesian model
 
 ### Resources
 
-Code for morning session can be found at `Scripts_morning_session/`:
+Code for morning session can be found at [`Scripts_morning_session/`](Scripts_morning_session/):
 
 * `1-pdf.R` - plot normal pdf
 * `2-globe.R` - grid approximation - globe model
