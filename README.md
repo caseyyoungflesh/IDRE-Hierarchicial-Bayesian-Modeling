@@ -45,7 +45,7 @@ Code for morning session can be found at [`Scripts_morning_session/`](Scripts_mo
 * [`3-bird-simulation.R`](Scripts_morning_session/3-bird-simulation.R) - simulate bird data for linear regression
 * [`4-fit-linear-bird-model.R`](Scripts_morning_session/4-fit-linear-bird-model.R) - simulate data then fit/assess linear regression
 * [`4-linear-bird-model.stan`](Scripts_morning_session/4-linear-bird-model.stan) - Stan file (bird weight ~ bird food)
-* [`5-var-int-simulation.R`](Scripts_morning_session/5-var-int-simulation.R) -simulate data for varying intercepts regression
+* [`5-var-int-simulation.R`](Scripts_morning_session/5-var-int-simulation.R) - simulate data for varying intercepts regression
 * [`6-fit-var-int-bird-model.R`](Scripts_morning_session/6-fit-var-int-bird-model.R) - simulate data then fit/assess varying intercepts linear regression
 * [`6-var-int-bird-model.stan`](Scripts_morning_session/6-var-int-bird-model.stan) - Stan file for varying intercepts model
 
