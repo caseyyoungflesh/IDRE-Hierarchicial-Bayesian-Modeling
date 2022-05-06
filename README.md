@@ -55,7 +55,7 @@ Code for the morning session can be found at [`Scripts/morning_session/`](Script
 * [`6-var-int-bird-model.stan`](Scripts/morning_session/6-var-int-bird-model.stan) - Stan file for varying intercepts model
 
 
-Code and data for the afternoon session can be found at [`Scripts/afternoon_session/`](Scripts/afternoon_session/):
+Code and data for the afternoon session can be found at [`Scripts/afternoon_session/`](Scripts/afternoon_session/)
 
 
 ### Slides
