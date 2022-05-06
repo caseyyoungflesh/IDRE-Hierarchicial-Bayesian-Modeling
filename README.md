@@ -58,9 +58,9 @@ Code for the morning session can be found at [`Scripts/morning_session/`](Script
 Code and data for the afternoon session can be found at [`Scripts/afternoon_session/`](Scripts/afternoon_session/):
 
 
-### Presentations
+### Slides
 
-Presentations for the morning session can be found at [`Presentations/morning_session/`](Presentations/morning_session/)
+Slides for the morning session can be found at [`Presentations/morning_session/`](Presentations/morning_session/)
 
-Presentations for the afternoon session can be found at [`Presentations/afternoon_session/`](Presentations/afternoon_session/)
+Slides for the afternoon session can be found at [`Presentations/afternoon_session/`](Presentations/afternoon_session/)
 
