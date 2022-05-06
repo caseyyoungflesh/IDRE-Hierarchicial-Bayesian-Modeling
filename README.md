@@ -36,7 +36,7 @@ Parts of this workshop will be interactive. That is, you will fit Bayesian model
   * Detailed instructions for installing the `rstan` package can be found [here](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started)
   * The [Stan forums](https://discourse.mc-stan.org) are a useful resource to help troubleshoot package installation issues
 * For the AFTERNOON SESSION: The `maps`, `spdep`, `maptools`, `classInt`, `RColorBrewer`, `MBA`, `fields`, `geoR`, `R2OpenBUGS`, `spatialreg`, `raster`, `leaflet`, and `sp` packages
-  * Please install OpenBUGS before installing the `R2OpenBUGS` package from [here](https://www.mrc-bsu.cam.ac.uk/software/bugs/openbugs/)
+  * Please install OpenBUGS before installing the `R2OpenBUGS` package from [here](https://www.mrc-bsu.cam.ac.uk/software/bugs/openbugs/). Instructions for installation of OpenBUGS on Mac can be found [here](https://oliviergimenez.github.io/blog/run_openbugs_on_mac/).
   * Install R packages with: `install.packages('maps', 'spdep', 'maptools', 'classInt', 'RColorBrewer', 'MBA', 'fields', 'geoR', 'R2OpenBUGS', 'spatialreg', 'raster', 'leaflet', 'sp')`
   
 
