@@ -1,0 +1,19 @@
+model
+{
+	for (i in 1:n) {
+		Y[i] ~ dnorm(mu[i], tausq.inv)
+		mu[i] <- inprod(X[i,], beta[]) + w[i]
+		w.mean[i] <- 0
+		}
+		
+		w[1:n] ~ spatial.exp(w.mean[], coords[,1], coords[,2], sigmasq.inv, phi,1)
+
+		for (i in 1:p) { 
+			beta[i] ~ dflat()
+		}
+		
+		tausq.inv ~ dgamma(2, 0.02)
+		sigmasq.inv ~ dgamma(2, 0.08)
+		phi ~ dunif(0.002, 0.06)		 
+}
+

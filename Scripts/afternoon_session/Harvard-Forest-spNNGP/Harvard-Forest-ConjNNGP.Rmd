@@ -1,0 +1,108 @@
+---
+title: "Harvard forest canopy height analyses using Conjugate (exact) NNGP"
+output: html_document
+---
+
+```{r global_options, echo=FALSE}
+knitr::opts_chunk$set(comment = NA, tidy = TRUE)
+```
+
+Remove (almost) all objects from the R environment. This will help ensure the program runs without any conflicting objects that may be existing in the workspace.
+```{r}
+rm(list = ls())
+```
+Here we consider forest canopy height (m) data measured using the NASA Goddard's LiDAR Hyperspectral and Thermal (G-LiHT) Airborne Imager over a subset of Harvard Forest Simes Tract, MA, collected in Summer 2012. This is a sampling LiDAR system that only records strips of canopy height across the landscape. We would like to use the Harvard Forest data to assess if the current density of LiDAR measurements can be reduced, which would allow for wider strips to be collected. Ultimately, interest is in creating wall-to-wall maps of forest canopy height with associated uncertainty.
+
+Let's load the necessary packages and canopy height data from the Harvard Forest database. Here we subset the data and divide it into a model and testing set.
+```{r, message=FALSE}
+## Some of the spatial projection protocol used by rgdal and dependent packages is
+## in flux. Use the option below until package development settles down.  For more
+## information see http://rgdal.r-forge.r-project.org/articles/PROJ6_GDAL3.html
+options(rgdal_show_exportToProj4_warnings = "none")
+
+library(geoR)
+library(raster)
+library(leaflet)
+
+CHM <- raster(paste0("HARV/CHM/HARV_chmCrop.tif"))
+
+CHM <- as.data.frame(CHM, xy=TRUE)
+CHM <- CHM[(CHM[,3]>0),]
+
+row.has.na <- apply(CHM, 1, function(x){any(is.na(x))})
+CHM <- CHM[(!row.has.na),]
+
+set.seed(1)
+mod <- sample(1:nrow(CHM), 25000)
+ho <- sample((1:nrow(CHM))[-mod], 10000)
+
+CHM.mod <- CHM[mod,]
+CHM.ho <- CHM[ho,]
+```
+
+Let's again start with a `leaflet` basemap then overlay the canopy height data. Recall, `leaflet` maps expect data to be in geographic coordinate system (i.e., longitude and latitude), so we first need reproject the CHM data (just for visualization purposes, we'll fit the model using the projected coordinates).
+
+```{r}
+chm.r <- rasterFromXYZ(CHM)
+proj4string(chm.r) <- "+proj=utm +zone=18 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0"
+chm.r.ll <- projectRaster(chm.r, crs="+proj=longlat +datum=WGS84")
+
+pal <- colorNumeric(rev(terrain.colors(50)), domain = values(chm.r.ll), na.color = "transparent")
+
+base.map <- leaflet(width="100%") %>%
+    addProviderTiles("Esri.WorldImagery", group="Satellite") %>%
+    addProviderTiles("Esri.WorldShadedRelief", group="Terrain")
+
+base.map %>%
+    addRasterImage(chm.r.ll, colors = pal, opacity = 1, group="Canopy height") %>%
+    addLegend("bottomright", pal = pal, values = values(chm.r.ll), opacity = 1, title = "<center>Canopy height (m)</center>") %>%
+    addLayersControl(
+        baseGroup = c("Satellite", "Terrain"),
+        overlayGroups = c("Canopy height"),
+        options = layersControlOptions(collapsed = FALSE)
+    )
+```
+
+Let's try and fit a variogram to the data to get a sense of the spatial structure. These `variog` function calculates the $n\times n$ Euclidean distance matrix to construct the empirical variogram. When $n$ is large this will you will likely run out of memory, so you might need to consider only a subset of your data.
+
+```{r, fig.align="center"}
+sub <- 1:10000
+
+#note, max intersite distance is ~1.5km
+v <- variog(coords=CHM.mod[sub,1:2], data=CHM.mod[sub,3], uvec=(seq(0, 500, length=30))) 
+
+plot(v, xlab="Distance (m)")
+```
+
+Now let's fit some spatial regression models using NNGP random effects and also predict at new locations in the holdout set.
+
+```{r}
+library(spNNGP)
+
+n.samples <- 1000
+
+cov.model <- "exponential"
+
+sigma.sq.IG <- c(2, 10)
+
+theta.alpha <- cbind(3/200, 5/10)
+colnames(theta.alpha) <- c("phi", "alpha")
+
+##For predictions
+
+X.pred <- as.matrix(rep(1,nrow(CHM.ho)), ncol=1, byrow=T)
+
+pred.coords.x <- as.numeric(CHM.ho$x)
+pred.coords.y <- as.numeric(CHM.ho$y)
+pred.coords <- cbind(pred.coords.x, pred.coords.y)
+
+##Conjugate NNGP model 
+m.conj <- spConjNNGP(CHM.mod[,3] ~ 1, coords=CHM.mod[,1:2], n.neighbors=10,
+		 k.fold=5, score.rule="crps", cov.model=cov.model, 
+		 sigma.sq.IG = sigma.sq.IG, theta.alpha = theta.alpha, 
+		 n.samples=n.samples, X.0=X.pred, coords.0=pred.coords)
+
+plot(CHM.ho[,3], m.conj$y.0.hat, main="Predictions from Conjugate NNGP model", xlab="True canopy height", ylab="Posterior predictive distribution mean")
+
+```
+

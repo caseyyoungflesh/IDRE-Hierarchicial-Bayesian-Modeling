@@ -31,21 +31,36 @@ Parts of this workshop will be interactive. That is, you will fit Bayesian model
 
 * [RStudio](https://www.rstudio.com/)
 * [R](https://www.r-project.org/)
-* The `rstan`, `tidyverse`, and `MCMCvis` packages
+* For the MORNING SESSION: The `rstan`, `tidyverse`, and `MCMCvis` packages
+  * Install R packages with: `install.packages('rstan', 'tidyverse', 'MCMCvis')`
   * Detailed instructions for installing the `rstan` package can be found [here](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started)
   * The [Stan forums](https://discourse.mc-stan.org) are a useful resource to help troubleshoot package installation issues
+* For the AFTERNOON SESSION: The `maps`, `spdep`, `maptools`, `classInt`, `RColorBrewer`, `MBA`, `fields`, `geoR`, `R2OpenBUGS`, `spatialreg`, `raster`, `leaflet`, and `sp` packages
+  * Please install OpenBUGS before installing the `R2OpenBUGS` package from [here](https://www.mrc-bsu.cam.ac.uk/software/bugs/openbugs/)
+  * Install R packages with: `install.packages('maps', 'spdep', 'maptools', 'classInt', 'RColorBrewer', 'MBA', 'fields', 'geoR', 'R2OpenBUGS', 'spatialreg', 'raster', 'leaflet', 'sp')`
+  
 
 
-### Resources
+### Code
 
-Code for morning session can be found at [`Scripts_morning_session/`](Scripts_morning_session/):
+Code for the morning session can be found at [`Scripts/morning_session/`](Scripts/morning_session/):
 
-* [`1-pdf.R`](Scripts_morning_session/1-pdf.R) - plot normal pdf
-* [`2-globe.R`](Scripts_morning_session/2-globe.R) - grid approximation - globe model
-* [`3-bird-simulation.R`](Scripts_morning_session/3-bird-simulation.R) - simulate bird data for linear regression
-* [`4-fit-linear-bird-model.R`](Scripts_morning_session/4-fit-linear-bird-model.R) - simulate data then fit/assess linear regression
-* [`4-linear-bird-model.stan`](Scripts_morning_session/4-linear-bird-model.stan) - Stan file (bird weight ~ bird food)
-* [`5-var-int-simulation.R`](Scripts_morning_session/5-var-int-simulation.R) - simulate data for varying intercepts regression
-* [`6-fit-var-int-bird-model.R`](Scripts_morning_session/6-fit-var-int-bird-model.R) - simulate data then fit/assess varying intercepts linear regression
-* [`6-var-int-bird-model.stan`](Scripts_morning_session/6-var-int-bird-model.stan) - Stan file for varying intercepts model
+* [`1-pdf.R`](Scripts/morning_session/1-pdf.R) - plot normal pdf
+* [`2-globe.R`](Scripts/morning_session/2-globe.R) - grid approximation - globe model
+* [`3-bird-simulation.R`](Scripts/morning_session/3-bird-simulation.R) - simulate bird data for linear regression
+* [`4-fit-linear-bird-model.R`](Scripts/morning_session/4-fit-linear-bird-model.R) - simulate data then fit/assess linear regression
+* [`4-linear-bird-model.stan`](Scripts/morning_session/4-linear-bird-model.stan) - Stan file (bird weight ~ bird food)
+* [`5-var-int-simulation.R`](Scripts/morning_session/5-var-int-simulation.R) - simulate data for varying intercepts regression
+* [`6-fit-var-int-bird-model.R`](Scripts/morning_session/6-fit-var-int-bird-model.R) - simulate data then fit/assess varying intercepts linear regression
+* [`6-var-int-bird-model.stan`](Scripts/morning_session/6-var-int-bird-model.stan) - Stan file for varying intercepts model
+
+
+Code and data for the afternoon session can be found at [`Scripts/afternoon_session/`](Scripts/afternoon_session/):
+
+
+### Presentations
+
+Presentations for the morning session can be found at [`Presentations/morning_session/`](Presentations/morning_session/)
+
+Presentations for the afternoon session can be found at [`Presentations/afternoon_session/`](Presentations/afternoon_session/)
 
