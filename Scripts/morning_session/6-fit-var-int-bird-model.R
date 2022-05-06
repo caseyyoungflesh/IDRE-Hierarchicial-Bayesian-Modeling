@@ -61,7 +61,7 @@ DATA <- list(N = N,
 
 # run Stan model ----------------------------------------------------------
 
-fit <- rstan::stan(file = '~/Google_Drive/Teaching/UCLA_Bayes_Stan_2022/Scripts_morning_session/6-var-int-bird-model.stan',
+fit <- rstan::stan(file = '~/Google_Drive/Teaching/UCLA_Bayes_Stan_2022/Scripts/morning_session/6-var-int-bird-model.stan',
                    data = DATA,
                    chains = 4,
                    iter = 2000,
