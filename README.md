@@ -67,4 +67,4 @@ Slides for the afternoon session can be found at [`Presentations/afternoon_sessi
 
 ### Presentation
 
-A recording of the workshop in its entirity can be found [here on YouTube](https://youtu.be/Ubsns37DD_U)
+A recording of the workshop in its entirity can be found [here on YouTube](https://www.youtube.com/watch?v=Ubsns37DD_U)
