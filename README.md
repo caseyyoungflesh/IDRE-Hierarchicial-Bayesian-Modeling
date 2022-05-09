@@ -64,3 +64,7 @@ Slides for the morning session can be found at [`Presentations/morning_session/`
 
 Slides for the afternoon session can be found at [`Presentations/afternoon_session/`](Presentations/afternoon_session/)
 
+
+### Presentation
+
+A recording of the workshop in its entirity can be found [here](https://www.youtube.com/watch?v=Ubsns37DD_U)
